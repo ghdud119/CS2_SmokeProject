@@ -57,12 +57,21 @@ void ASmoke::SpawnVoxel(FVector Start, FVector Direction, int Depth)
 				if(voxel)
 				{
 					Voxels.Push(voxel);
+					SixWayTrace(voxel, ++Depth);
 				}
 				else
 				{
-					UE_LOG(LogTemp, Error, TEXT("%s class Spawn Faild"), *AActor::StaticClass()->GetName());
+					UE_LOG(LogTemp, Error, TEXT("%s class Spawn Faild"), *voxel->GetName());
 				}
 			}
+			else
+			{
+				//UE_LOG(LogTemp, Error, TEXT("HitResult : %s"), *HitResult.GetActor()->GetName());
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("World Invalid"));
 		}
 	}
 }
